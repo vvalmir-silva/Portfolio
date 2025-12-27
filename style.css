@@ -14,6 +14,7 @@ html {
 :root {
   --primeira: #4f46e5;
   --segundo: #7c3aed;
+  --accent: #06B6D4;
   --escuro: #0f172a;
   --claro: #e3e8f0;
   --vidro: rgba(255, 255, 255, 0.1);
@@ -63,6 +64,57 @@ body {
 
 .menu-link:hover::after {
   width: 100%;
+}
+
+/* NAVIGATION - mobile toggle, active link and shadow on scroll */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle span {
+  display: block;
+  height: 3px;
+  background: var(--claro);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.navegacao.scrolled {
+  box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.menu-link.active {
+  color: var(--segundo);
+}
+
+@media (max-width: 768px) {
+  .nav-toggle { display: flex; }
+  .menu {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    background: rgba(15,23,42,0.95);
+    width: 240px;
+    height: calc(100% - 64px);
+    padding: 2rem 1rem;
+    gap: 1rem;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+    display: flex;
+  }
+  .menu.open { transform: translateX(0); }
+  .menu li { margin-bottom: 0.5rem; }
+  .menu-link { font-size: 1.15rem; }
 }
 
 .cabecalho {
@@ -222,7 +274,7 @@ h1 {
 
 .botao-form {
   color: var(--claro);
-  background: linear-gradient(45deg, var(--primeira), var(--segundo));
+  background: linear-gradient(90deg, var(--primeira), var(--accent));
   padding: 1rem 2rem;
   border: none;
   border-radius: 8px;
@@ -234,7 +286,7 @@ h1 {
 
 .botao-form:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 10px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 8px 24px rgba(6,182,212,0.18);
 }
 
 .particulas {
@@ -280,3 +332,16 @@ extensão Prettier - Code formatter
 default formatter
 format on save
 */
+
+/* estilos para validação visual */
+.error-msg {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #ff6b6b;
+  min-height: 18px;
+}
+
+.campo-form.invalid {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 4px rgba(255,107,107,0.06);
+}
